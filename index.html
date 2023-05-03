@@ -44,36 +44,14 @@
       </nav>
     <div class="container">
    
-      <div class="row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Exercicio" aria-label="Exercicio">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Repetições" aria-label="Repetições">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Descanço" aria-label="Descanço">
-        </div>
-        <div class="col">
-            <select class="form-select" aria-label="Default select example">
-                <option selected>Series</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-              </select>
-        </div>
-        <div class="col">
-            <button type="button" class="btn btn-dark">Dark</button>
-
-        </div>
-
-      </div>
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        Novo Treino
+      </button>  
 
     </div>
 
     <div class="container">
-        <div class="row">
+        <div id="treinos" class="row">
             <div class="card">
                 <div class="card-header">
                   Segunda
@@ -91,6 +69,49 @@
         </div>
         
     </div>
+
+   
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Cadrastrar Treino</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12">
+            <input id="titulo" type="text" class="form-control" placeholder="Exercicio" aria-label="Exercicio">
+          </div>
+          <div class="col-12">
+            <input id="repeticoes" type="text" class="form-control" placeholder="Repetições" aria-label="Repetições">
+          </div>
+          <div class="col-12">
+            <select id="series" class="form-select" aria-label="Default select example">
+                <option selected>Series</option>
+                <option >1</option>
+                <option >2</option>
+                <option >3</option>
+                <option >4</option>
+              </select>
+        </div>
+          <div class="col-12">
+            <input id="descanso" type="text" class="form-control" placeholder="Descanço" aria-label="Descanço">
+          </div>
+          
+         
+  
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button  id="salvar" type="button" class="btn btn-primary">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="./crud.js"></script>
 </body>
 </html>
