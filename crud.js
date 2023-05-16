@@ -24,7 +24,7 @@ function cadastrar(){
     let categoria = document.querySelector("#categoria").value
 
     const tarefa = {
-        id: Date.now(),
+        
         titulo,
         descricao,
         pontos,
@@ -39,7 +39,7 @@ if (tarefa.titulo.length ==0){
     
     localStorage.setItem("#tarefas", JSON.stringify(tarefas))
 
-   
+   atualizar()
     modal.hide()
 
 
