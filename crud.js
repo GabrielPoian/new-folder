@@ -1,15 +1,20 @@
 document.querySelector("#salvar").addEventListener("click", cadastrar)
 
-let lista_tarefas =[]
+let tarefas = []
 
-window.addEventListener("load",() => {
-  lista_tarefas = JSON.parse( localStorage.getItem("lista_tarefas"))
-  lista_tarefas.forEach(()=> {
-    document.querySelector("#tarefas").innerHTML += gerarCard(tarefa)
-
-  })
-  
+window.addEventListener("load", () => {
+    tarefas = JSON.parse(localStorage.getItem("tarefas")) || []
+    atualizar()
 })
+  
+function atualizar(){
+    document.querySelector("#tarefas").innerHTML = ""
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
+    tarefas.forEach((tarefa) =>{
+        document.querySelector("#tarefas").innerHTML 
+                    += gerarCard(tarefa)
+    })
+}
 
 function cadastrar(){
     const modal = bootstrap.Modal.getInstance(document.querySelector("#exampleModal"))
@@ -19,6 +24,7 @@ function cadastrar(){
     let categoria = document.querySelector("#categoria").value
 
     const tarefa = {
+        id: Date.now(),
         titulo,
         descricao,
         pontos,
@@ -28,17 +34,25 @@ if (tarefa.titulo.length ==0){
         document.querySelector("#titulo").classList.add("is-invalid")
         return
 }
-  lista_tarefas.push(tarefa)
+  tarefas.push(tarefa)
     document.querySelector("#tarefas").innerHTML += gerarCard(tarefa)
     
-    localStorage.setItem("lista_tarefas", JSON.stringify(lista_tarefas))
+    localStorage.setItem("#tarefas", JSON.stringify(tarefas))
 
+   
     modal.hide()
+
 
 }
 
 function apagar(botao){
-    botao.parentNode.parentNode.parentNode.remove()
+    let card = botao.parentNode.parentNode.parentNode
+    let indice = Array.from(card.parentNode.children).indexOf(card)
+    tarefas.splice(indice, 1)
+    atualizar()
+
+    // Remover do localStorage
+    localStorage.setItem("tarefas", JSON.stringify(tarefas))
 }
 
 function gerarCard(tarefa){
